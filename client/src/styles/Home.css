@@ -14,7 +14,7 @@ nav{
   display: flex;
   align-items: center;
   justify-content: space-between;
-  color: var(--color-1);
+  color: white;
 }
 nav button{
   padding: 8px 15px;
@@ -48,9 +48,10 @@ main h1{
 .todo-list li input[type="checkbox"]{
   height: 20px;
   width: 20px;
-  accent-color: var(--text-color);
+  accent-color: var(--main-color-2);
 }
 .todo-list li label{
+  color: var(--text-color);
   flex-grow: 1;
   padding: 10px;
 }
@@ -70,12 +71,9 @@ footer{
   height: 100%;
   top: 0;
   left: 0;
-  display: none;
+  display: flex;
   flex-direction: column;
   align-items: center;
-}
-.overlay.active{
-  display: flex;
 }
 .create-todo-modal{ 
   margin-top: 150px;
@@ -84,13 +82,10 @@ footer{
   padding: 20px;
   background-color: var(--color-1);
   border-radius: 10px;
-  display: none;
+  display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
-}
-.create-todo-modal.active{
-  display: flex;
 }
 .create-todo-modal input{
   box-sizing: border-box;
@@ -99,4 +94,5 @@ footer{
   background-color: var(--color-2);
   border: none;
   border-radius: 10px;
+  color: var(--text-color);
 }

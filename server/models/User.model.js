@@ -24,7 +24,6 @@ const userSchema = new Schema({
     task: {
       type: String,
       required: true,
-      unique: true,
       trim: true
     },
     isCompleted: Boolean

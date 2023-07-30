@@ -1,8 +1,9 @@
 import { useState } from "react"
 import axios from "axios"
+import { useNavigate } from "react-router-dom"
 
 export const Signup = () =>{
-
+  const navigate = useNavigate()
   const [firstname, setFirstname] = useState('')
   const [lastname, setLastname] = useState('')
   const [email, setEmail] = useState('')
@@ -19,11 +20,11 @@ export const Signup = () =>{
     e.preventDefault()
     axios.post(`${process.env.REACT_APP_API_URL}/auth/signup`, {firstname, lastname, email, password})
     .then((response) => {
-      console.log(response.data.user)
+      navigate('/login')
     })
     .catch((error) => {
-      const errorDescription = error.response.data.message
-      setErrorMessage(errorDescription)
+      console.log(error.response.data.message)
+      setErrorMessage(error.response.data.message)
     })
   }
 
@@ -39,7 +40,7 @@ export const Signup = () =>{
         <button type="submit" className="main-button">Sign up</button>
       </form>
       <a href="/login">to Login</a>
-      {errorMessage && <div>Error: {errorMessage}</div>}
+      {errorMessage && <div className="error-message">Error: {errorMessage}</div>}
     </div>
   )
 }

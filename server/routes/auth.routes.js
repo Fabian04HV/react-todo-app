@@ -12,18 +12,38 @@ router.post("/signup", (req, res) => {
   User.findOne({ email: email })
   .then(foundUser => {
     if(foundUser){
-      return res.status(409).json({ message: "User already exists"})
+      return res.status(409).json({ message: "User with that email already exists"})
     }
+    else{
+      //Check for password security
+      if (password.length <= 8) 
+      return res.status(400).json({ message: "Password must be longer than 8 characters." })
 
-    const salt = bcrypt.genSaltSync(saltRounds);
-    const hashedPassword = bcrypt.hashSync(password, salt);
+      if (!/\d/.test(password))
+      return res.status(400).json({ message: "Password must include at least one number." })
 
-    User.create( { firstname, lastname, email, password: hashedPassword })
-    .then(createdUser => {
-      const { firstname, lastname, email } = createdUser
-      const user = { firstname, lastname, email}
-      res.status(201).json({ message: "User successfully created", user})
-    })
+      if (!/[a-z]/.test(password))
+      return res.status(400).json({ message: "Password must include at least one lowercase letter." })
+
+      if (!/[A-Z]/.test(password))
+      return res.status(400).json({ message: "Password must include at least one uppercase letter." })
+
+      if (!/[!@#$%^&*(),.?":{}|<>]/.test(password))
+      return res.status(400).json({ message: "Password must include a special character." })
+
+      if (/\s/.test(password))
+      return res.status(400).json({ message: "Password cannot contain spaces." })
+
+      const salt = bcrypt.genSaltSync(saltRounds);
+      const hashedPassword = bcrypt.hashSync(password, salt);
+
+      User.create( { firstname, lastname, email, password: hashedPassword })
+      .then(createdUser => {
+        const { firstname, lastname, email } = createdUser
+        const user = { firstname, lastname, email}
+        res.status(201).json({ message: "User successfully created", user})
+      })
+    }
   })
 })
 
@@ -32,21 +52,20 @@ router.post('/login', (req, res) => {
   
   User.findOne({ email: email })
   .then(foundUser => {
-    if(foundUser){
+    if(!foundUser) return res.status(404).json({ message: 'User not found' })
+    else{
       const isPasswordCorrect = bcrypt.compareSync(password, foundUser.password)
 
       if(isPasswordCorrect){
         const { _id, firstname, lastname, email} = foundUser
 
         const payload = { _id, firstname, lastname, email }
-        const authToken = jwt.sign(payload, process.env.TOKEN_SECRET, { algorithm: 'HS256', expiresIn: "6h" })
+        const authToken = jwt.sign(payload, process.env.TOKEN_SECRET, { algorithm: 'HS256', expiresIn: "8h" })
 
         res.status(200).json({ authToken })
       }else {
         res.status(401).json({ message: 'Wrong Password' })
       }
-    } else {
-      res.status(404).json({ message: 'User not found' })
     }
   })
   .catch(err => {

@@ -21,7 +21,19 @@ function getTokenFromHeaders (req) {
   return null;
 }
  
-// Export the middleware so that we can use it to create a protected routes
-module.exports = {
-  isAuthenticated
+// Custom error handling middleware to catch JWT-related errors
+function handleJWTError(err, req, res, next) {
+  if (err.name === 'UnauthorizedError') {
+    // Redirect the user to the login page when the JWT is expired or invalid
+    res.redirect('/login');
+  } else {
+    // For other errors, continue with the standard error handling
+    next(err);
+  }
 }
+
+// Export the middlewares so that we can use them to create protected routes
+module.exports = {
+  isAuthenticated,
+  handleJWTError,
+};

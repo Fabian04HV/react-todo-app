@@ -17,18 +17,24 @@ export const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+
+    let isError = false
     
     axios.post(`${process.env.REACT_APP_API_URL}/auth/login`, { email, password })
     .then(response => {
       const authToken = response.data.authToken
       localStorage.setItem('authToken', authToken)
       authenticateUser()
+      return authToken
     })
     .catch(err => {
+      isError = true
       setErrorMessage(err.response.data.message)
     })
     .finally(() => {
-      navigate('/')
+      if (!isError) {
+        navigate('/')
+      }
     })
   }
 

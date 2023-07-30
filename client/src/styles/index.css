@@ -7,7 +7,13 @@
   --color-1: #fff;
   --color-2: #d8d8d8;
 }
-
+.darkmode{
+  --main-color-1: #1E51F9;
+  --main-color-2: #8000FF;
+  --text-color: #fff;
+  --color-1: #211f24;
+  --color-2: #161418;
+}
 *{
   margin: 0;
   padding: 0;
@@ -42,7 +48,7 @@ input{
   border-radius: 1000px;
   border: none;
   background-image: linear-gradient(to right, var(--main-color-1), var(--main-color-2));
-  color: var(--color-1);
+  color: white;
   font-weight: 600;
 }
 .icon-center-button{
@@ -83,6 +89,8 @@ button.white-hover:hover{
   align-items: center;
 }
 .error-message{
+  box-sizing: border-box;
+  max-width: 95%;
   position: absolute;
   top: 20px;
   padding: 10px 20px;
@@ -91,6 +99,7 @@ button.white-hover:hover{
   border-radius: 10px;
   animation: .5s fadeInMoveDown;
   font-weight: 600;
+  text-align: center;
 }
 @keyframes fadeInMoveDown{
   from{

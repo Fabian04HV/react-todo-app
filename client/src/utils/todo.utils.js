@@ -1,11 +1,19 @@
 import axios from "axios"
 
-export const fetchUsersTodos = (userId) => {
-  const authToken = localStorage.getItem("authToken")
+export const fetchUsersTodos = (userId, authToken) => {
   return axios.get(`${process.env.REACT_APP_API_URL}/api/${userId}/todos`, { headers: { Authorization: `Bearer ${authToken}` }})
   .then(response => {
     return response.data.todos
   })
+}
+
+export const saveTodos = (todos, authToken) => {
+  // if(todos.length === 0) return;
+  axios.put(`${process.env.REACT_APP_API_URL}/api/save-todos`, { todos }, { headers: { Authorization: `Bearer ${authToken}`}})
+  .then((response) => {
+    console.log("Saved: ", response.data.todos)
+  })
+  .catch(err => console.log(err))
 }
 
 // const createTodo = () => {
