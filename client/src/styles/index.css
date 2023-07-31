@@ -11,7 +11,7 @@
 .darkmode{
   --main-color-1: #1E51F9;
   --main-color-2: #8000FF;
-  --text-color: #fff;
+  --text-color: #eaeaea;
   --secondary-text-color: #525569;
   --color-1: #1f1f24;
   --color-2: #0f0f13;
@@ -47,6 +47,13 @@ a.secondary-text{
 }
 a.secondary-text:hover{
   color: var(--text-color);
+}
+.gradient-text{
+  background: linear-gradient(90deg, var(--main-color-1), var(--main-color-2));
+  -webkit-background-clip: text;
+  color: transparent;
+  filter: brightness(150%);
+  font-weight: 700;
 }
 input{
   box-sizing: border-box;
@@ -116,6 +123,14 @@ button.white-hover:hover{
   animation: .5s fadeInMoveDown;
   font-weight: 600;
   text-align: center;
+}
+hr{
+  border: none;
+  height: 2px;
+  background-color: var(--secondary-text-color);
+}
+.darkmode hr{
+  background-color: var(--color-1);
 }
 @keyframes fadeInMoveDown{
   from{
