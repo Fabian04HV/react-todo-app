@@ -1,6 +1,6 @@
-import React from "react";
-import { useState, useEffect } from "react";
-const ThemeContext = React.createContext();
+import React from "react"
+import { useState, useEffect } from "react"
+const ThemeContext = React.createContext()
 
 const ThemeProviderWrapper = (props) => {
   const [darkmode, setDarkmode] = useState(true)
@@ -9,7 +9,7 @@ const ThemeProviderWrapper = (props) => {
     const newDarkmode = !darkmode
     localStorage.setItem('darkmode', newDarkmode)
     setDarkmode(newDarkmode)
-  };
+  }
   
   useEffect(() => {
     const storedDarkmode = localStorage.getItem('darkmode')
@@ -17,7 +17,7 @@ const ThemeProviderWrapper = (props) => {
       const parsedDarkmode = JSON.parse(storedDarkmode)
       setDarkmode(parsedDarkmode)
     }
-  }, []);
+  }, [])
   
   useEffect(() => {
     if (darkmode) {
@@ -33,7 +33,7 @@ const ThemeProviderWrapper = (props) => {
     >
       {props.children}
     </ThemeContext.Provider>
-  );
+  )
 }
 
-export { ThemeProviderWrapper, ThemeContext };
+export { ThemeProviderWrapper, ThemeContext }

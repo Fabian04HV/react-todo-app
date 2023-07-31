@@ -7,14 +7,13 @@ const port = 5000
 const cors = require("cors")
 const corsOptions = {
   origin: 'http://localhost:3000', // Only allow requests from react frontend 
-};
+}
 
-
-app.use(cors(corsOptions));
+app.use(cors(corsOptions))
 
 const bodyParser = require("body-parser")
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 
 const indexRoutes = require("./routes/index.routes")
 app.use("/api", indexRoutes)
@@ -25,7 +24,7 @@ app.use("/auth", authRoutes)
 const todoRoutes = require("./routes/todo.routes")
 app.use("/api", isAuthenticated, todoRoutes)
 
-app.use(handleJWTError);
+app.use(handleJWTError)
 
 
 app.listen(port, () => {

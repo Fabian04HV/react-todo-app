@@ -1,7 +1,7 @@
-import axios from "axios";
-import { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../context/auth.context";
+import axios from "axios"
+import { useContext, useState } from "react"
+import { useNavigate } from "react-router-dom"
+import { AuthContext } from "../context/auth.context"
 
 export const Login = () => {
 
@@ -46,7 +46,7 @@ export const Login = () => {
         <input required onChange={handleEmailInput} type="email" placeholder="Email" />
         <input required onChange={handlePasswordInput} type="password" placeholder="Password" />
         <button type="submit" className="main-button">Login</button>
-        <a href="/signup">to Signup</a>
+        <a className="secondary-text" href="/signup">to Signup</a>
       </form>
       <br/>
       {errorMessage && <p key={errorMessage} className="error-message">{errorMessage}</p>}

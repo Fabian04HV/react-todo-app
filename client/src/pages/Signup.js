@@ -23,7 +23,6 @@ export const Signup = () =>{
       navigate('/login')
     })
     .catch((error) => {
-      console.log(error.response.data.message)
       setErrorMessage(error.response.data.message)
     })
   }
@@ -39,7 +38,7 @@ export const Signup = () =>{
         <input required onChange={handlePasswordInput} type="password" placeholder="Password"/>
         <button type="submit" className="main-button">Sign up</button>
       </form>
-      <a href="/login">to Login</a>
+      <a className="secondary-text" href="/login">to Login</a>
       {errorMessage && <div className="error-message">Error: {errorMessage}</div>}
     </div>
   )

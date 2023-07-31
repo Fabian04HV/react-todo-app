@@ -34,8 +34,8 @@ router.post("/signup", (req, res) => {
       if (/\s/.test(password))
       return res.status(400).json({ message: "Password cannot contain spaces." })
 
-      const salt = bcrypt.genSaltSync(saltRounds);
-      const hashedPassword = bcrypt.hashSync(password, salt);
+      const salt = bcrypt.genSaltSync(saltRounds)
+      const hashedPassword = bcrypt.hashSync(password, salt)
 
       User.create( { firstname, lastname, email, password: hashedPassword })
       .then(createdUser => {
@@ -70,11 +70,11 @@ router.post('/login', (req, res) => {
   })
   .catch(err => {
     res.status(500).json({ message: 'Internal Server Error' })
-  });
+  })
 })
 
 // GET  /auth/verify  -  Used to verify JWT stored on the client
 router.get('/verify', isAuthenticated, (req, res) => {
-  res.status(200).json(req.payload);
-});
+  res.status(200).json(req.payload)
+})
 module.exports = router

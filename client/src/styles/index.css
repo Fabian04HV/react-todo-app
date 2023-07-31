@@ -39,11 +39,21 @@ button, input{
   font: inherit;
   cursor: pointer;
 }
+.secondary-text{
+  color: var(--secondary-text-color);
+}
+a.secondary-text{
+  text-decoration: none;
+}
+a.secondary-text:hover{
+  color: var(--text-color);
+}
 input{
   box-sizing: border-box;
   padding: 10px;
   border: none;
   border-radius: 10px;
+  color: var(--text-color);
 }
 .main-button{
   padding: 10px 20px;
@@ -83,6 +93,9 @@ button.white-hover:hover{
 }
 .vertical-form input{
   display: block;
+}
+.darkmode .vertical-form input{
+  background-color: var(--color-1);
 }
 .auth-form-container{
   min-height: 100vh;

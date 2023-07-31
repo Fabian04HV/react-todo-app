@@ -1,15 +1,15 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react"
+import { Route, Routes, useNavigate } from "react-router-dom"
 import { Home } from "./pages/Home"
-import { Signup } from "./pages/Signup";
+import { Signup } from "./pages/Signup"
 import { Login } from "./pages/Login"
-import { AuthContext } from "./context/auth.context";
-import { LandingPage } from "./pages/LandingPage";
+import { AuthContext } from "./context/auth.context"
+import { LandingPage } from "./pages/LandingPage"
 
 function App() {
   const { user, isLoggedIn, isLoading} = useContext(AuthContext)
 
-  const [renderedComponent, setRenderedComponent] = useState(null);
+  const [renderedComponent, setRenderedComponent] = useState(null)
 
   useEffect(() => {
     if(isLoggedIn){
@@ -26,7 +26,7 @@ function App() {
       <Route path="/signup" element={<Signup/>} />
       <Route path="/login" element={<Login/>} />
     </Routes>
-  );
+  )
 }
 
-export default App;
+export default App

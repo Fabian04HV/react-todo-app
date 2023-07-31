@@ -35,7 +35,7 @@ export const Home = () => {
   }, [todos])
 
   useEffect(() => {
-    if(!displayFilter) setDisplayedTodos(todos);
+    if(!displayFilter) setDisplayedTodos(todos)
     
     else if(displayFilter === 'active'){
       const filteredTodos = todos.filter(todo => todo.isCompleted === false)
@@ -66,7 +66,7 @@ export const Home = () => {
   }
 
   const deleteTodo = (task) => {
-    const updatedTodos = todos.filter(todo => todo.task !== task);
+    const updatedTodos = todos.filter(todo => todo.task !== task)
     setTodos(updatedTodos)
   }
 
@@ -77,7 +77,7 @@ export const Home = () => {
         return { ...todo, isCompleted: !todo.isCompleted }
       }
       else return todo
-    });
+    })
     setTodos(updatedTodos)
   } 
 
@@ -159,7 +159,7 @@ export const Home = () => {
         </footer>
         {showModal && 
         <div className={`overlay`} onClick={(e) => handleCloseOverlay(e)}>
-          ${showModal === "create" && 
+          {showModal === "create" && 
           <div className={`create-todo-modal`}>
             <h2>Create New Todo</h2>
             <input 
