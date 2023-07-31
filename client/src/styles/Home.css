@@ -1,10 +1,10 @@
 .Home{
-  padding-top: 100px;
+  padding-top: 70px;
   display: flex;
   flex-direction: column;
-  gap: 30px;
 }
 nav{
+  margin-bottom: 30px;
   box-sizing: border-box;
   padding: 10px;
   height: 65px;
@@ -26,6 +26,28 @@ nav button{
   border-radius: 1000px;
   color: white;
 }
+.filter-section{
+  background: transparent;
+  width: max-content;
+  border-radius: 10px 10px 0 0;
+  font-weight: 500;
+}
+.filter-section button{
+  padding: 5px 10px 0 10px;
+  background-color: transparent;
+  border: none;
+  border-radius: 10px 10px 0 0;
+  color: var(--text-color);
+  opacity: 0.35;
+}
+.filter-section button.active{
+  color: var(--text-color);
+  background-color: var(--color-1);
+  opacity: 1;
+}
+.filter-section:has(button:not(:first-child).active) + main{
+  border-radius: 10px;
+}
 main{
   min-height: 200px;
   position: relative;
@@ -33,8 +55,8 @@ main{
   padding: 20px;
   width: 750px;
   background-color: var(--color-1);
-  border-radius: 10px;
-  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1)
+  border-radius: 0 10px 10px 10px;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
 }
 main h1{
   font-size: 1.25rem;

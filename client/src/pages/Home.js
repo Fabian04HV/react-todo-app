@@ -18,10 +18,14 @@ export const Home = () => {
 
   const [showModal, setShowModal] = useState(false)
 
+  const [displayFilter, setDisplayFilter] = useState(false)
+  const [displayedTodos, setDisplayedTodos] = useState([])
+
   useEffect(() => {
     fetchUsersTodos(user._id, authToken)
       .then(response => {
         setTodos(response)
+        setDisplayedTodos(response)
         setFetchCompleted(true)
       })
   }, [])
@@ -29,6 +33,19 @@ export const Home = () => {
   useEffect(() => {
     if(fetchCompleted) saveTodos(todos, authToken)
   }, [todos])
+
+  useEffect(() => {
+    if(!displayFilter) setDisplayedTodos(todos);
+    
+    else if(displayFilter === 'active'){
+      const filteredTodos = todos.filter(todo => todo.isCompleted === false)
+      setDisplayedTodos(filteredTodos)  
+    }
+    else if(displayFilter === 'completed'){
+      const filteredTodos = todos.filter(todo => todo.isCompleted === true)
+      setDisplayedTodos(filteredTodos)
+    }
+  }, [displayFilter, todos]) 
 
   const handleNewTaskInput = (e) => setNewTask(e.target.value)  
   const handleKeyDown = (e) => e.key === "Enter" && createTodo()
@@ -109,10 +126,15 @@ export const Home = () => {
           Logout
         </button>
       </nav>
+      <section className="filter-section">
+        <button className={`${displayFilter === false && "active"}`} onClick={ () => setDisplayFilter(false)}>All</button>
+        <button className={`${displayFilter === "active" && "active"}`} onClick={ () => setDisplayFilter('active')}>Active</button>
+        <button className={`${displayFilter === "completed" && "active"}`} onClick={ () => setDisplayFilter('completed')}>Completed</button>
+      </section>
       <main>
         <h1>{user.firstname}'s Todos</h1>
         <ul className="todo-list">
-          {todos && todos.map((todo, index) => {
+          {displayedTodos && displayedTodos.map((todo, index) => {
             return (
             <li key={`todo-${index}`}>
               <input 
