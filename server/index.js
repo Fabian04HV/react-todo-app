@@ -2,7 +2,8 @@ const express = require('express')
 const dataBaseConnection = require("./db/index")
 const { isAuthenticated, handleJWTError } = require('./middlewares/jwt.middlewares')
 const app = express()
-const port = 5000
+
+const port = process.env.PORT || 5000
 
 const FRONTEND_URL = process.env.ORIGIN
 
@@ -30,5 +31,5 @@ app.use(handleJWTError)
 
 
 app.listen(port, '0.0.0.0', () => {
-  console.log("-------------------- Server is listening on port ", port, " --------------------")
+  console.log("-------------------- Server is listening on port: ", port, " --------------------")
 })
