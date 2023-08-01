@@ -1,6 +1,8 @@
 .LandingPage{
+  box-sizing: border-box;
   width: 1000px;
-  max-width: 95%;
+  max-width: 100%;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -12,6 +14,24 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+}
+.darkmode-button{
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 50%;
+  padding: 5px;;
+  background: var(--secondary-text-color)
+}
+.LandingPage header h1{
+  line-height: 2.25rem;
+}
+.LandingPage header .subheading{
+  margin-top: 10px;
+  font-weight: 300;
+  text-transform: uppercase;
+  font-size: 1.15rem;
 }
 .links-container{
   display: flex;
@@ -29,18 +49,23 @@ a{
 .LandingPage .links-container a:first-child{
   background: var(--main-color-1);
 }
-.LandingPage .links-container a:last-child{
+.LandingPage .links-container a:nth-child(2){
   background: var(--main-color-2);
 }
+
 a:hover{
   scale: 1.1;
   filter: brightness(110%);
 }
 .LandingPage h2{
+  margin-top: 20px;
+  margin-bottom: 10px;
   text-align: center;
+  font-size: 1.75rem;
 }
 .LandingPage video{
   border-radius: 10px;
+  max-width: 100%;
 }
 .LandingPage footer{
   width: 100%;
@@ -50,4 +75,22 @@ a:hover{
 }
 .LandingPage footer a{
   width: max-content;
+}
+@media(max-width: 426px){
+  .LandingPage{
+    padding: 15px;
+    text-align: center;
+  }
+  .LandingPage header .subheading{
+    text-transform: unset;
+    font-size: 1rem;
+  }
+
+  .LandingPage header .links-container{
+    justify-content: center;
+    gap: 8px;
+  }
+  .LandingPage section p{
+    text-align: justify;
+  }
 }

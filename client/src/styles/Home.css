@@ -1,4 +1,7 @@
 .Home{
+  box-sizing: border-box;
+  padding: 0 8px;
+  max-width: 100%;
   padding-top: 70px;
   display: flex;
   flex-direction: column;
@@ -56,7 +59,9 @@ main{
   position: relative;
   box-sizing: border-box;
   padding: 20px;
+  padding-bottom: 0;
   width: 750px;
+  max-width: 100%;
   background-color: var(--color-1);
   border-radius: 0 10px 10px 10px;
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
@@ -70,10 +75,17 @@ main h1{
 .todo-list li{
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--color-2);
+}
+.todo-list li .todo-options-container{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 .todo-list li input[type="checkbox"]{
-  height: 20px;
-  width: 20px;
+  min-height: 20px;
+  min-width: 20px;
   accent-color: var(--main-color-2);
 }
 .todo-list li label.todo{
@@ -85,10 +97,14 @@ main h1{
   text-decoration: line-through;
   color: var(--secondary-text-color);
 }
-.Home footer{
+.Home .todo-list-controls{
+  padding: 15px 0;
   display: flex;
   justify-content: flex-end;
 }  
+.Home .todo-list-controls > *{
+  cursor: pointer;
+}
 .overlay{
   z-index: 555;
   background: rgba(0, 0, 0, 0.65);
@@ -121,4 +137,58 @@ main h1{
   border: none;
   border-radius: 10px;
   color: var(--text-color);
+}
+footer{
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+footer a{
+  width: max-content;
+  color: var(--secondary-text-color);
+}
+footer a:hover{
+  color: var(--text-color);
+}
+@media (max-width: 600px){
+  nav button > *:not(svg){
+    display: none;
+  }
+}
+@media(max-width: 426px){
+  nav .username{
+    text-align: center;
+  }
+  nav .username .lastname{
+    display: none;
+  }
+  main{
+    padding-right: 10px;
+  }
+  main .todo-list li input[type="checkbox"]{
+    height: 15px;
+    width: 15px;
+    min-height: unset;
+    min-width: unset;
+  }
+  main svg{
+    height: 22px;
+    width: 22px;
+  }
+  .Home main .todo-list-controls{
+    justify-content: center;
+  }
+
+  /* nav button{
+    padding: 8px 15px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: transparent;
+    border: none;
+    border-radius: 1000px;
+    color: white;
+  } */
+  
 }

@@ -118,12 +118,12 @@ export const Home = () => {
         </button> */}
         <button onClick={() => toggleDarkmodeHandler()} className="white-hover" title="Switch Theme">
           <svg fill="#fff" xmlns="http://www.w3.org/2000/svg" height="28" viewBox="0 -960 960 960" width="28"><path d="M524-40q-84 0-157.5-32t-128-86.5Q184-213 152-286.5T120-444q0-146 93-257.5T450-840q-18 98 11 192.635 29 94.635 100 165.736 71 71.101 165.5 100.143Q821-352.445 920-370.471q-26 144.206-138 237.338Q670-40 524-40Zm0-60q100 0 182-57t132-145q-90-8-173-41.5T518.5-440Q455-503 422-585.5T381-757q-88 48-144.5 130.5T180-444q0 143.333 100.333 243.667Q380.667-100 524-100Zm-6-340Z"/></svg>
-          Theme
+          <span>Theme</span>
         </button>
-        <span>{user.firstname} {user.lastname}</span>
+        <span className="username"> <span className="firstname">{user.firstname}</span> <span className="lastname">{user.lastname}</span></span>
         <button title="Logout" className="white-hover" onClick={() => logoutUser()}>
           <svg fill="#fff" xmlns="http://www.w3.org/2000/svg" height="28" viewBox="0 -960 960 960" width="28"><path d="M180-120q-24 0-42-18t-18-42v-600q0-24 18-42t42-18h299v60H180v600h299v60H180Zm486-185-43-43 102-102H360v-60h363L621-612l43-43 176 176-174 174Z"/></svg>
-          Logout
+          <span>Logout</span>
         </button>
       </nav>
       <section className="filter-section">
@@ -144,19 +144,21 @@ export const Home = () => {
                 onChange={() => toggleTodoCompleted(todo.task)} 
                 />
               <label className="todo" htmlFor={`todo-${index}`}>{todo.task}</label>
-              <label htmlFor="edit-modal-input" onClick={() => editTodo(todo.task)} title="Edit" className="icon-center-button">
-                <svg fill="var(--secondary-text-color)" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M180-180h44l443-443-44-44-443 443v44Zm614-486L666-794l42-42q17-17 42-17t42 17l44 44q17 17 17 42t-17 42l-42 42Zm-42 42L248-120H120v-128l504-504 128 128Zm-107-21-22-22 44 44-22-22Z"/></svg>
-              </label>
-              <button onClick={() => deleteTodo(todo.task)} className="icon-center-button">
-                <svg fill="var(--secondary-text-color)" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m249-207-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z"/></svg>
-              </button>
+              <div className="todo-options-container">
+                <label htmlFor="edit-modal-input" onClick={() => editTodo(todo.task)} title="Edit" className="icon-center-button">
+                  <svg fill="var(--secondary-text-color)" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M180-180h44l443-443-44-44-443 443v44Zm614-486L666-794l42-42q17-17 42-17t42 17l44 44q17 17 17 42t-17 42l-42 42Zm-42 42L248-120H120v-128l504-504 128 128Zm-107-21-22-22 44 44-22-22Z"/></svg>
+                </label>
+                <button onClick={() => deleteTodo(todo.task)} className="icon-center-button">
+                  <svg fill="var(--secondary-text-color)" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m249-207-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z"/></svg>
+                </button>
+              </div>
               </li>
             )})
           }
         </ul>
-        <footer>
+        <section className="todo-list-controls">
           <label htmlFor="modal-input" title="Create New Todo" onClick={() => { setShowModal("create")}} className="main-button add-todo-button">Add Todo</label>
-        </footer>
+        </section>
         {showModal && 
         <div className={`overlay`} onClick={(e) => handleCloseOverlay(e)}>
           {showModal === "create" && 
@@ -174,7 +176,7 @@ export const Home = () => {
               <svg fill="var(--text-color)" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m249-207-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z"/></svg>
             </button>
           </div>}
-          ${showModal === "edit" && 
+          {showModal === "edit" && 
           <div className={`create-todo-modal`}>
             <h2>Edit Todo</h2>
             <input 
@@ -193,6 +195,9 @@ export const Home = () => {
         </div>
         }
       </main>
+      <footer>
+        <a href="https://www.github.com/Fabian04HV/react-todo-app">code on github</a>
+      </footer>
     </div>
   )
 }
