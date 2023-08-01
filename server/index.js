@@ -4,9 +4,11 @@ const { isAuthenticated, handleJWTError } = require('./middlewares/jwt.middlewar
 const app = express()
 const port = 5000
 
+const FRONTEND_URL = process.env.ORIGIN
+
 const cors = require("cors")
 const corsOptions = {
-  origin: 'http://localhost:3000', // Only allow requests from react frontend 
+  origin: FRONTEND_URL, // Only allow requests from react frontend 
 }
 
 app.use(cors(corsOptions))
@@ -27,6 +29,6 @@ app.use("/api", isAuthenticated, todoRoutes)
 app.use(handleJWTError)
 
 
-app.listen(port, () => {
+app.listen(port, '0.0.0.0', () => {
   console.log("-------------------- Server is listening on port ", port, " --------------------")
 })
