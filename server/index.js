@@ -17,11 +17,11 @@ const bodyParser = require("body-parser")
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
-const indexRoutes = require("./routes/index.routes")
-app.use("/api", indexRoutes)
-
 const authRoutes = require("./routes/auth.routes")
 app.use("/auth", authRoutes)
+
+const indexRoutes = require("./routes/index.routes")
+app.use("/api", indexRoutes)
 
 const todoRoutes = require("./routes/todo.routes")
 app.use("/api", isAuthenticated, todoRoutes)
